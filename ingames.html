@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>HOMPIMPA</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="summary">
+        <h1 class="text-5xl font-italic underline">Match Result</h1>
+        <h1 id="ingame" class="text-5xl mt-60"></h1>
+        <h1 id="result" class="text-3xl mt-10"></h1>
+      </div>
+      <div class="games">
+        <div class="option" onclick="pickOption('✊')">Rock ✊</div>
+        <div class="option" onclick="pickOption('🤚')">Paper 🤚</div>
+        <div class="option" onclick="pickOption('✂️')">Scissors ✂️</div>
+      </div>
+    </div>
+    <button id="logoutButton" onclick="logout()">Logout</button>
+    <script>
+      class Start {
+        constructor() {
+          this.playerName = "Player";
+          this.botName = "Bot-Sinung";
+          this.playerOption;
+          this.botOption;
+          this.winner = "";
+        }
+
+        setPlayerOption(option) {
+          this.playerOption = option;
+        }
+
+        setBotOption(option) {
+          this.botOption = option;
+        }
+
+        botBrain() {
+          const option = ["✊", "🤚", "✂️"];
+          const bot = option[Math.floor(Math.random() * option.length)];
+          return bot;
+        }
+
+        winCalculation() {
+          if (
+            (this.botOption === "✂️" && this.playerOption === "✊") ||
+            (this.botOption === "✊" && this.playerOption === "🤚") ||
+            (this.botOption === "🤚" && this.playerOption === "✂️")
+          ) {
+            this.winner = this.playerName;
+          } else if (this.botOption === this.playerOption) {
+            this.winner = "DRAW";
+          } else {
+            this.winner = this.botName;
+          }
+        }
+
+        matchResult() {
+          if (this.winner !== "DRAW") {
+            return `${this.winner} WIN!`;
+          } else {
+            return "It's a DRAW, no one wins!";
+          }
+        }
+      }
+
+      function pickOption(homps) {
+        const game = new Start();
+        game.setPlayerOption(homps);
+        game.setBotOption(game.botBrain());
+        game.winCalculation();
+
+        console.log("Bot chose", game.botOption);
+        console.log("Player chose", game.playerOption);
+        console.log("Winner =", game.winner);
+        console.log("Final result: ", game.matchResult());
+
+        const ingame = document.getElementById("ingame");
+        const result = document.getElementById("result");
+        ingame.textContent = "please wait ...";
+        result.textContent = "";
+        setTimeout(() => {
+          ingame.textContent = `${game.playerOption} vs ${game.botOption}`;
+
+          result.textContent = game.matchResult();
+        }, 1000);
+      }
+
+      function logout() {
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>

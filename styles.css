@@ -1,0 +1,61 @@
+:root {
+  box-sizing: border-box;
+}
+
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100vh;
+}
+.summary {
+  margin: 0 auto;
+  border: 3px solid #3498db;
+  width: 600px;
+  height: 600px;
+  text-align: center;
+}
+.title {
+  text-align: center;
+  margin-top: 100px;
+}
+.games {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.option {
+  width: 30%;
+  margin: 25px;
+  padding: 25px;
+  text-align: center;
+  font-size: 30px;
+  background-color: #5bc0de;
+}
+.option:hover {
+  cursor: pointer;
+  background-color: #3498db;
+  transform: scale(110%);
+  transition: cubic-bezier(0.215, 0.61, 0.355, 1) ease-in-out;
+}
+
+#logoutButton {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: background-color 0.3s;
+  margin: 20px auto;
+  display: block;
+}
+
+#logoutButton:hover {
+  background-color: #ff3333;
+}
